@@ -15,6 +15,14 @@ const palabras = [
   {
     palabra: "FUNCION",
     descripcion: "Bloques de codigo reutilizables que pueden o no recibir o devover valores"
+  },
+  {
+    palabra: "ARRAY",
+    descripcion: "son un tipo de variable que permiten tener más de un elemento, (o valor en su interior), a los que se pueden acceder mediante un índice"
+  },
+  {
+    palabra: "OBJETO",
+    descripcion: "Se trata de un ente abstracto usado en programación que permite separar los diferentes componentes de un programa, simplificando así su elaboración, depuración y posteriores mejoras"
   }
 ];
 let arrValoresCaja = [];
@@ -58,6 +66,5 @@ $btnComprobar.addEventListener("click", () => {
     arrValoresCaja = [];
   }
   contador++;
-
 })
 
