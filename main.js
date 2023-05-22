@@ -30,10 +30,12 @@ let palabraUnida = null;
 let palabraAAdivinar = null;
 
 $btnGenerar.addEventListener("click", () => {
+  // numero random
   const numero = Math.floor(Math.random() * palabras.length);
+  // guarda en arrValoresCaja
   palabraAAdivinar = palabras[numero].palabra;
   $descripcionPalabra.innerHTML = palabras[numero].descripcion;
-
+  // crear fila (div) e insertarle inputs
   for(let i = 1; i <= 3; i++) {
     const $fila = document.createElement("div");
     $fila.classList.add("fila"+i);
@@ -46,7 +48,10 @@ $btnGenerar.addEventListener("click", () => {
 let contador = 1;
 let caracterCaja = null;
 $btnComprobar.addEventListener("click", () => {
-
+  // recorrer inputs segun la clase por eso un contador
+  // al dar el primer click recorrera la cajas de la primera linea
+  // al dar el segundo click recorrera la cajas de la segunda linea
+  // y así sucesivamente
   const $cajas = document.querySelectorAll(`.caja${contador}`);
   $cajas.forEach(caja => {
     caracterCaja = caja.value;
@@ -62,13 +67,20 @@ $btnComprobar.addEventListener("click", () => {
     alert("Has ganado");
     location.reload();
   }
+  // decimos en que linea ha perdido
   else{
     if(contador === 1) {
       alert("Has perdido en la primera linea");
+      $cajas.forEach(caja => {
+        caja.disabled=true;
+      })
       contador++;
     }
     else if(contador === 2) {
       alert("Has perdido en la segunda linea");
+      $cajas.forEach(caja => {
+        caja.disabled=true;
+      })
       contador++;
     }
     else{
