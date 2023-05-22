@@ -79,3 +79,6 @@ body{
   color: #fff;
   gap: 15px;
 }
+.disabled{
+  display: none;
+}
