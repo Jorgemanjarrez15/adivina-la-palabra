@@ -14,7 +14,7 @@ const palabras = [
   },
   {
     palabra: "FUNCION",
-    descripcion: "Bloques de codigo reutilizables que pueden o no recibir o devover valores"
+    descripcion: "Bloques de codigo reutilizables que pueden o no recibir y devover valores"
   },
   {
     palabra: "ARRAY",
@@ -26,7 +26,7 @@ const palabras = [
   }
 ];
 let arrValoresCaja = [];
-let palabraUnida1 = null;
+let palabraUnida = null;
 let palabraAAdivinar = null;
 
 $btnGenerar.addEventListener("click", () => {
@@ -37,34 +37,45 @@ $btnGenerar.addEventListener("click", () => {
   for(let i = 1; i <= 3; i++) {
     const $fila = document.createElement("div");
     $fila.classList.add("fila"+i);
-    $fila.innerHTML = `<input type="text" class="caja${i}" />`.repeat(palabraAAdivinar.length)
+    $fila.innerHTML = `<input type="text" class="caja${i}" maxlength=1 />`.repeat(palabraAAdivinar.length)
     $contenedor.appendChild($fila);
+    $btnGenerar.classList.add("disabled");
   }
 });
 
 let contador = 1;
+let caracterCaja = null;
 $btnComprobar.addEventListener("click", () => {
 
   const $cajas = document.querySelectorAll(`.caja${contador}`);
   $cajas.forEach(caja => {
-    arrValoresCaja.push(caja.value);
-    palabraUnida1 = arrValoresCaja.join("");
+    caracterCaja = caja.value;
+    arrValoresCaja.push(caracterCaja);
+    palabraUnida = arrValoresCaja.join("");
+
   })
-  if(palabraUnida1.toUpperCase() == palabraAAdivinar) {
+
+  if(caracterCaja === ""){
+    alert("Escibe algo")
+  }
+  else if(palabraUnida.toUpperCase() == palabraAAdivinar) {
     alert("Has ganado");
     location.reload();
-  }else{
+  }
+  else{
     if(contador === 1) {
       alert("Has perdido en la primera linea");
+      contador++;
     }
     else if(contador === 2) {
       alert("Has perdido en la segunda linea");
+      contador++;
     }
     else{
       alert("Has perdido ya no tienes mas lineas");
+      location.reload();
     }
     arrValoresCaja = [];
   }
-  contador++;
 })
 
